@@ -39,4 +39,9 @@ public class GlobalExceptionHandler {
     //   - status는 INTERNAL_SERVER_ERROR
     //   - body에 e.getMessage()를 그대로 노출하는 게 왜 위험할 수 있는지 생각해보고,
     //     대신 고정된 안내 메시지("서버 내부 오류가 발생했습니다" 등)를 넣어보기
+
+  @ExceptionHandler(IllegalArgumentException.class)
+  public ResponseEntity<?> handleIllegalArgument(IllegalArgumentException e){
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+  }
 }
